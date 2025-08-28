@@ -6,6 +6,9 @@ sudo nmap -sC -sV -vv -p- 10.10.11.221
 gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  -u domain.name
 
 ## subdomains:
+gobuster vhost -u http://domain.domain \
+-w ~/Downloads/subdomains \
+--append-domain -t 50
 ffuf -c -ac -w ~/Downloads/subdomains-10000.txt -H 'Host: FUZZ.domain.name' -u http://domainname 
 
 ## ssh pivot
