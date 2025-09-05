@@ -46,3 +46,7 @@ hashcat -m 0 hashes.txt /usr/share/wordlists/rockyou.txt --force
 ## docker folder - build with dockerfile
 sudo docker build -t dockername . 
 sudo docker run -it -v $(pwd):/app dockername
+
+
+##hash
+echo 'pass'| base64 -d > bcrypt.hash
